@@ -1,0 +1,25 @@
+{
+    "family": "$TASK_DEF_FAMILY",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::965080479351:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "name": "nodejs-todoapp",
+        "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG",
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 3000,
+            "hostPort": 3000,
+            "protocol": "tcp"
+          }
+        ]
+      }
+    ]
+  }
+  

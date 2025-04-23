@@ -1,18 +1,19 @@
 version: 0.2
 env:
   variables:
-    AWS_ACCOUNT_ID: "965080479351"
+    AWS_ACCOUNT_ID: "515966529212"
     AWS_DEFAULT_REGION: "ap-southeast-1"
-    IMAGE_REPO_NAME: "todo-app"
+    IMAGE_REPO_NAME: "mb-app"
     ECS_CLUSTER: "devops-cluster"
-    SERVICE_NAME: "todo-service"
-    TASK_DEF_FAMILY: "todoapptask"
+    SERVICE_NAME: "mb-service"
+    TASK_DEF_FAMILY: "mbapptask"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      #- aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 515966529212.dkr.ecr.ap-southeast-1.amazonaws.com
       - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
       - echo $IMAGE_TAG
       # #######install npm####
@@ -21,8 +22,10 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      #- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker build -t mb-app .
+      #- docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker tag mb-app:latest 515966529212.dkr.ecr.ap-southeast-1.amazonaws.com/mb-app:latest
       ######running test#########
       # - echo Running Tests
       # - npm test
@@ -30,6 +33,7 @@ phases:
     commands:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      #- docker push 515966529212.dkr.ecr.ap-southeast-1.amazonaws.com/mb-app:latest
       - echo Writing image definitions...
       - printf '[{"name":"todo-app","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
       - echo Preparing task definition file...
@@ -61,5 +65,5 @@ artifacts:
   base-directory: .  # Current directory (root of CodeBuild environment)
   discard-paths: yes
   s3:
-    bucket: nodejsmtatodoapp
-    path: nodejsmtatodoapp/todo-app  # Directory inside your S3 bucket
+    bucket: nodejsmbapp
+    path: nodejsmbapp/todo-app  # Directory inside your S3 bucket

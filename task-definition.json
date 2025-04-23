@@ -9,7 +9,7 @@
     "executionRoleArn": "arn:aws:iam::515966529212:role/mb-codebuild-rl",
     "containerDefinitions": [
       {
-        "name": "nodejs-myapp",
+        "name": "nodejs-mbapp",
         "image": "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG",
         "essential": true,
         "portMappings": [

@@ -5,7 +5,7 @@ env:
     AWS_DEFAULT_REGION: "ap-southeast-1"
     IMAGE_REPO_NAME: "mb-app"
     ECS_CLUSTER: "devops-cluster"
-    SERVICE_NAME: "mb-service"
+    SERVICE_NAME: "mbapptask-service-if5ajur1"
     TASK_DEF_FAMILY: "mbapptask"
 
 phases:
@@ -66,4 +66,4 @@ artifacts:
   discard-paths: yes
   s3:
     bucket: nodejsmbapp
-    path: nodejsmbapp/todo-app  # Directory inside your S3 bucket
+    path: nodejsmbapp/mb-app  # Directory inside your S3 bucket

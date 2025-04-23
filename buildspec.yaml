@@ -24,8 +24,8 @@ phases:
       - echo Building the Docker image...
       #- docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker build -t mb-app .
-      #- docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - docker tag mb-app:latest 515966529212.dkr.ecr.ap-southeast-1.amazonaws.com/mb-app:latest
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      #- docker tag mb-app:latest 515966529212.dkr.ecr.ap-southeast-1.amazonaws.com/mb-app:latest
       ######running test#########
       # - echo Running Tests
       # - npm test

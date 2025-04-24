@@ -4,7 +4,7 @@ Resources:
       Type: AWS::ECS::Service
       Properties:
         # The ECS service name to update
-        TaskDefinition: "arn:aws:iam::515966529212:role/mb-codebuild-rl"
+        TaskDefinition: "arn:aws:iam::515966529212:role/AWSCodeDeployRole"
         LoadBalancerInfo:
           ContainerName: "nodejs-mbapp"
           ContainerPort: 3000

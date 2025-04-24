@@ -5,7 +5,7 @@ env:
     AWS_DEFAULT_REGION: "ap-southeast-1"
     IMAGE_REPO_NAME: "mb-app"
     ECS_CLUSTER: "devops-cluster"
-    SERVICE_NAME: "mbapptask-service-if5ajur1"
+    SERVICE_NAME: "mbapptask-service"
     TASK_DEF_FAMILY: "mbapptask"
 
 phases:

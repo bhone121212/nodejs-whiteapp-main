@@ -4,7 +4,7 @@ Resources:
       Type: AWS::ECS::Service
       Properties:
         # The ECS service name to update
-        TaskDefinition: "arn:aws:ecs:ap-southeast-1:965080479351:task-definition/todoapptask"
+        TaskDefinition: "arn:aws:iam::515966529212:role/mb-codebuild-rl"
         LoadBalancerInfo:
           ContainerName: "nodejs-mbapp"
           ContainerPort: 3000
